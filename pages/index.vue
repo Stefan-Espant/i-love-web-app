@@ -42,8 +42,9 @@ console.log(data)
     <Default />
     <Intro />
     <SearchBar />
+    
 
-    <articleCard {{ data }} />
+    <articleCard {{ data}} />
   </div>
 </template>
 
