@@ -1,0 +1,76 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+::selection {
+    background-color: var(--color-secundary);
+    color: var(--color-default);
+}
+
+:root {
+    /* Animaties */
+    --animation-default: 0.2s;
+
+    /* Eenheiden */
+    --unit-full: 100%;
+    --unit-deca: 10rem;
+    --unit-large: 2rem;
+    --unit-default: 1rem;
+    --unit-small: 0.5rem;
+    --unit-micro: 0.25rem;
+    --unit-nano: 0.125rem;
+    --unit-pico: .5px;
+
+    /* Kleuren */
+    --color-default: #F5F5F5;
+    --color-invert: #222222;
+    --color-primary-100:#643305;
+    --color-primary-75: #B27603;
+    --color-primary-50: #FFB800;
+    --color-secundary: #0C6545;
+
+    /* Schaduwen */
+    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);;
+}
+
+@font-face {
+    font-family: "Gloock";
+    src: 
+        local("Gloock") 
+        url(../assets/fonts/gloock-regular.ttf)
+        format("truetype");
+}
+
+body {
+    background-color: var(--color-primary-50);
+    color: var(--color-invert);
+    font-family: 'League Spartan', sans-serif;
+}
+
+a {
+    font-family: "Gloock", didot, serif;
+}
+
+/* Typografie */
+h1, h2, h3, h4, p {
+    font-weight: normal;
+}
+
+h1, h2 {
+    font-family: "Gloock", didot, serif;
+}
+
+h1 {
+    max-width: 23rem;
+    margin-bottom: var(--unit-default);
+    font-size: 3rem;
+    line-height: 1.2;
+    letter-spacing: -1px;
+}
+
+h3 {
+    font-family: "League Spartan";
+}
+
