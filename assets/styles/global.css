@@ -10,37 +10,34 @@
 }
 
 :root {
-    /* Animaties */
     --animation-default: 0.2s;
-
-    /* Eenheiden */
-    --unit-full: 100%;
+    --color-default: #F5F5F5;
+    --color-invert: #222222;
+    --color-secundary: #0C6545;
+    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);;
     --unit-deca: 10rem;
-    --unit-large: 2rem;
     --unit-default: 1rem;
-    --unit-small: 0.5rem;
+    --unit-full: 100%;
+    --unit-large: 2rem;
     --unit-micro: 0.25rem;
     --unit-nano: 0.125rem;
     --unit-pico: .5px;
-
+    --unit-small: 0.5rem;
+    /* Animaties */
+    /* Eenheiden */
     /* Kleuren */
-    --color-default: #F5F5F5;
-    --color-invert: #222222;
     --color-primary-100:#643305;
     --color-primary-75: #B27603;
     --color-primary-50: #FFB800;
-    --color-secundary: #0C6545;
-
     /* Schaduwen */
-    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);;
 }
 
 @font-face {
     font-family: "Gloock";
+
     src: 
         local("Gloock") 
         url(../assets/fonts/gloock-regular.ttf)
-        format("truetype");
 }
 
 body {
@@ -49,8 +46,76 @@ body {
     font-family: 'League Spartan', sans-serif;
 }
 
+/* Interactief */
 a {
     font-family: "Gloock", didot, serif;
+}
+
+a, button, input {
+    cursor: pointer;
+    transition: var(--animation-default) ease-in-out;
+    border: 2px solid #00000000;
+}
+
+a:hover, button:hover {
+    background-color: var(--color-default);
+    color: var(--color-secundary);
+}
+
+a:focus-visible, button:focus-visible, input:focus-visible {
+    outline: unset;
+}
+
+button {
+	background-color: var(--color-secundary);
+	border-radius: var(--unit-micro);
+	border: unset;
+	padding: var(--unit-micro) var(--unit-default);
+	box-shadow: var(--shadow-default);
+	color: var(--color-default);
+}
+
+button figure {
+	align-items: center;
+	display: flex;
+	flex-direction: row;
+	gap: var(--unit-small);
+}
+
+button figure svg {
+	fill: var(--color-default);
+    transition: var(--animation-default);
+}
+
+input {
+	background-color: var(--color-default);
+	border: unset;
+	border-radius: var(--unit-micro);
+	box-shadow: var(--shadow-default);
+	padding: var(--unit-small) var(--unit-small) var(--unit-small) var(--unit-small);
+	width: var(--unit-full);
+    height: var(--unit-large);
+}
+
+/* Hover state */
+a:hover, button:hover {
+    background-color: var(--color-default);
+    color: var(--color-secundary);
+}
+
+button:hover figure svg {
+    fill: var(--color-secundary);
+}   
+
+/* focus state */
+a:focus, button:focus, input:focus {
+	border: 2px solid var(--color-secundary);
+    background-color: var(--color-default);
+    color: var(--color-secundary);
+}
+
+button:focus svg {
+    fill: var(--color-secundary);
 }
 
 /* Typografie */
@@ -63,14 +128,35 @@ h1, h2 {
 }
 
 h1 {
-    max-width: 23rem;
-    margin-bottom: var(--unit-default);
     font-size: 3rem;
-    line-height: 1.2;
     letter-spacing: -1px;
+    line-height: 1.2;
+    margin-bottom: var(--unit-default);
+    max-width: 23rem;
 }
 
 h3 {
     font-family: "League Spartan";
 }
 
+/* Overzicht artikelen */
+section .all-articles {
+    margin: auto;
+    width: fit-content;
+}
+
+/* Media queries */
+@media (min-width: 22rem){
+
+    .searchbar {
+        margin: 0 auto;
+        width: 22rem;
+    }
+}
+
+@media (min-width: 45rem) {
+    .searchbar {
+        margin: 0 auto;
+        width: calc(42rem + var(--unit-default));
+    }
+}

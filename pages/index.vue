@@ -1,17 +1,17 @@
 <script setup>
 
 const QUERY = `
-  query Articles {
-    allArticles {
-      id
-      datum
-      auteur
-      title
-      paragraaf(markdown: true)
-      _createdAt
-      _status
-    }
+{
+  allArticles {
+    id
+    datum
+    auteur
+    title
+    paragraaf(markdown: true)
+    _createdAt
+    _status
   }
+}
 `;
 
 const runtimeConfig = useRuntimeConfig();
@@ -33,8 +33,6 @@ const { data, error } = await useFetch('https://graphql.datocms.com', {
 definePageMeta({
     layout: 'default'
 })
-
-console.log(data)
 </script>
 
 <template>
@@ -42,9 +40,7 @@ console.log(data)
     <Default />
     <Intro />
     <SearchBar />
-    
-
-    <articleCard {{ data}} />
+    <articleCard {{ data }} />
   </div>
 </template>
 
