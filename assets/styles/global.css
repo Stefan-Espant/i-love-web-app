@@ -143,6 +143,13 @@ h3 {
     font-family: "League Spartan";
 }
 
+p {
+    line-height: 1.4;
+    max-width: calc(var(--unit-deca) * 3);
+    text-wrap: balance;
+    white-space-collapse: break-spaces;
+}
+
 /* Overzicht artikelen */
 section .all-articles {
     margin: auto;

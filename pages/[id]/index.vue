@@ -61,4 +61,8 @@ console.log(data);
 section {
   padding: var(--unit-default);
 }
+
+h1 {
+  max-width: 75%;
+}
 </style>
