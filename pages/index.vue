@@ -11,6 +11,13 @@ const QUERY = `
     _createdAt
     _status
   }
+  article {
+    title
+    paragraaf(markdown: true)
+    id
+    datum
+    auteur
+  }
 }
 `;
 

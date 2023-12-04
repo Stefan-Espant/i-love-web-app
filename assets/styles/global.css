@@ -10,11 +10,19 @@
 }
 
 :root {
+    /* Animaties */
     --animation-default: 0.2s;
+
+    /* Kleuren */
+    --color-primary-100:#643305;
+    --color-primary-75: #B27603;
+    --color-primary-50: #FFB800;
     --color-default: #F5F5F5;
+    --color-default-sub: #e3ddcd;
     --color-invert: #222222;
     --color-secundary: #0C6545;
-    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);;
+
+    /* Eenheiden */
     --unit-deca: 10rem;
     --unit-default: 1rem;
     --unit-full: 100%;
@@ -23,13 +31,9 @@
     --unit-nano: 0.125rem;
     --unit-pico: .5px;
     --unit-small: 0.5rem;
-    /* Animaties */
-    /* Eenheiden */
-    /* Kleuren */
-    --color-primary-100:#643305;
-    --color-primary-75: #B27603;
-    --color-primary-50: #FFB800;
+
     /* Schaduwen */
+    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);
 }
 
 @font-face {
@@ -99,7 +103,7 @@ input {
 
 /* Hover state */
 a:hover, button:hover {
-    background-color: var(--color-default);
+    background-color: var(--color-default-sub);
     color: var(--color-secundary);
 }
 

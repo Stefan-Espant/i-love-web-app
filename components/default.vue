@@ -24,7 +24,7 @@
 
         <ul>
             <li>
-                <a href="/sessies">Sessies</a>
+                <a href="/">Sessies</a>
             </li>
             <li>
                 <a href="/over">Over dit blog</a>
@@ -68,6 +68,14 @@
 
     header ul li a:is(:hover, :focus){
         background-color: var(--color-default);
+    }
+
+    @media (min-width: 40rem){
+        ul {
+            display: flex;
+            flex-direction: row;
+            gap: var(--unit-default);
+        }
     }
 
 </style>

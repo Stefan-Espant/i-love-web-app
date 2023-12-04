@@ -1,6 +1,6 @@
 <template>
 	<section class="all-articles">
-		<h2 hidden>Kies een I love web</h2>
+		<h2 hidden>Kies een I love web article</h2>
 		<article v-for="article in data.allArticles" :key="article.id">
 		<h2>
             {{ article.title }}
@@ -9,7 +9,7 @@
 		    <p>{{ article.auteur }}</p>
 		    <time>{{ article.datum}}</time>
         </div>
-		<a href="article/id">Lees meer ...</a>
+		<NuxtLink :to="{ path: `/${article.id}` }">Lees meer ...</NuxtLink>
 		</article>
 	</section>
 </template>
@@ -80,7 +80,7 @@ a {
 }
 
 a:hover {
-    background-color: var(--color-default);
+    background-color: var(--color-default-sub);
     color: var(--color-secundary);
 }
 

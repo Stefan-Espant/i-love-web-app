@@ -7,11 +7,11 @@ export default defineNuxtConfig({
     },
   },
   app: {
-  head: {
-    htmlAttrs: {
-      lang: 'nl'
+    head: {
+      htmlAttrs: {
+        lang: 'nl',
+      },
+      title: 'I love web blog',
     },
-    title: 'I love web blog',
-  },  
-}
-})
+  }
+});
