@@ -10,19 +10,12 @@
 }
 
 :root {
-    /* Animaties */
     --animation-default: 0.2s;
-
-    /* Kleuren */
-    --color-primary-100:#643305;
-    --color-primary-75: #B27603;
-    --color-primary-50: #FFB800;
     --color-default: #F5F5F5;
     --color-default-sub: #e3ddcd;
     --color-invert: #222222;
     --color-secundary: #0C6545;
-
-    /* Eenheiden */
+    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);
     --unit-deca: 10rem;
     --unit-default: 1rem;
     --unit-full: 100%;
@@ -31,9 +24,13 @@
     --unit-nano: 0.125rem;
     --unit-pico: .5px;
     --unit-small: 0.5rem;
-
+    /* Animaties */
+    /* Kleuren */
+    --color-primary-100:#643305;
+    --color-primary-75: #B27603;
+    --color-primary-50: #FFB800;
+    /* Eenheiden */
     /* Schaduwen */
-    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);
 }
 
 @font-face {
@@ -56,9 +53,9 @@ a {
 }
 
 a, button, input {
+    border: 2px solid #00000000;
     cursor: pointer;
     transition: var(--animation-default) ease-in-out;
-    border: 2px solid #00000000;
 }
 
 a:hover, button:hover {
@@ -71,34 +68,34 @@ a:focus-visible, button:focus-visible, input:focus-visible {
 }
 
 button {
-	background-color: var(--color-secundary);
-	border-radius: var(--unit-micro);
-	border: unset;
-	padding: var(--unit-micro) var(--unit-default);
-	box-shadow: var(--shadow-default);
-	color: var(--color-default);
+    background-color: var(--color-secundary);
+    border: unset;
+    border-radius: var(--unit-micro);
+    box-shadow: var(--shadow-default);
+    color: var(--color-default);
+    padding: var(--unit-micro) var(--unit-default);
 }
 
 button figure {
-	align-items: center;
-	display: flex;
-	flex-direction: row;
-	gap: var(--unit-small);
+    align-items: center;
+    display: flex;
+    flex-direction: row;
+    gap: var(--unit-small);
 }
 
 button figure svg {
-	fill: var(--color-default);
+    fill: var(--color-default);
     transition: var(--animation-default);
 }
 
 input {
-	background-color: var(--color-default);
-	border: unset;
-	border-radius: var(--unit-micro);
-	box-shadow: var(--shadow-default);
-	padding: var(--unit-small) var(--unit-small) var(--unit-small) var(--unit-small);
-	width: var(--unit-full);
+    background-color: var(--color-default);
+    border: unset;
+    border-radius: var(--unit-micro);
+    box-shadow: var(--shadow-default);
     height: var(--unit-large);
+    padding: var(--unit-small) var(--unit-small) var(--unit-small) var(--unit-small);
+    width: var(--unit-full);
 }
 
 /* Hover state */
@@ -113,8 +110,8 @@ button:hover figure svg {
 
 /* focus state */
 a:focus, button:focus, input:focus {
-	border: 2px solid var(--color-secundary);
     background-color: var(--color-default);
+    border: 2px solid var(--color-secundary);
     color: var(--color-secundary);
 }
 
