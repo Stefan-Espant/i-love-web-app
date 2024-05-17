@@ -2,12 +2,12 @@
 	<div>
 		<Default />
 		<section v-if="data">
-			<article>
 				<h1 v-if="data.article">{{ data.article.title }}</h1>
-				<h2 v-if="data.article">{{ data.article.auteur }}</h2>
+        <div class="subinfo">
+          <h2 v-if="data.article">{{ data.article.auteur }}</h2>
 				<time>{{ data.article.datum }}</time>
+        </div>
 				<p>{{ data.article.paragraaf }}</p>
-			</article>
 		</section>
 		<div v-if="!data && !error">Loading...</div>
 		<div v-if="error">{{ error }}</div>
@@ -66,17 +66,23 @@ section {
 	padding: var(--unit-default);
 	border-radius: var(--unit-micro);
 	box-shadow: var(--shadow-default);
+  margin: auto;
 }
 
-article {
-	background-color: var(--color-default);
-	border-radius: var(--unit-micro);
-	box-shadow: var(--shadow-default);
-	width: fit-content;
-	padding: 1rem;
+.subinfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
 }
 
 h1 {
 	max-width: 75%;
+}
+
+time {
+  width: fit-content;
+  display: block;
+  margin: 1rem 0;
 }
 </style>
