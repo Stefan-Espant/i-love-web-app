@@ -46,7 +46,7 @@ definePageMeta({
   <div>
     <Default />
     <Intro />
-    <SearchBar />
+    <SearchBar {{ data }} />
     <articleCard {{ data }} />
   </div>
 </template>
