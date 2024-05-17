@@ -85,4 +85,10 @@ time {
   display: block;
   margin: 1rem 0;
 }
+
+@media (min-width: 40rem) {
+  section {
+    width: 50%;
+  }
+}
 </style>
