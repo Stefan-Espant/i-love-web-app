@@ -66,7 +66,8 @@ section {
 	padding: var(--unit-default);
 	border-radius: var(--unit-micro);
 	box-shadow: var(--shadow-default);
-  margin: auto;
+  	margin: auto;
+	mix-blend-mode: color-burn;
 }
 
 .subinfo {
@@ -78,6 +79,7 @@ section {
 
 h1 {
 	max-width: 75%;
+	mix-blend-mode: unset;
 }
 
 time {

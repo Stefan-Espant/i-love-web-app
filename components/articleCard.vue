@@ -51,14 +51,29 @@ console.log(data);
 <style scoped>
 article {
 	width: var(--unit-full);
-    background-color: var(--color-default);
+    background: rgb(245, 245, 245);
     padding: var(--unit-default);
     display: grid;
+    position: relative;
     gap: var(--unit-default);
     grid-template-columns: 1fr;
     grid-template-rows: 4rem 1rem 3rem;
     border-radius: var(--unit-micro);
     box-shadow: var(--shadow-default);
+    mix-blend-mode: color-burn;
+}
+
+article::after {
+    content: '';
+    background-image: url(assets/images/marble.png);
+    background-size: cover;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0.4;
+    z-index: -1;
 }
 
 article h2 {

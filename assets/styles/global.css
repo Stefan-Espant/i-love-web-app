@@ -10,12 +10,17 @@
 }
 
 :root {
+    /* Animaties */
     --animation-default: 0.2s;
-    --color-default: #F5F5F5;
+    /* Kleuren */
+    --color-primary-100:#643305;
+    --color-primary-75: #B27603;
+    --color-primary-50: #FFB800;
+    --color-default: #f5f5f5;
     --color-default-sub: #e3ddcd;
     --color-invert: #222222;
     --color-secundary: #0C6545;
-    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);
+    /* Eenheiden */
     --unit-deca: 10rem;
     --unit-default: 1rem;
     --unit-full: 100%;
@@ -24,13 +29,8 @@
     --unit-nano: 0.125rem;
     --unit-pico: .5px;
     --unit-small: 0.5rem;
-    /* Animaties */
-    /* Kleuren */
-    --color-primary-100:#643305;
-    --color-primary-75: #B27603;
-    --color-primary-50: #FFB800;
-    /* Eenheiden */
     /* Schaduwen */
+    --shadow-default: 4px 4px 4px rgba(179, 129, 0, 0.66);
 }
 
 @font-face {
@@ -45,6 +45,22 @@ body {
     background-color: var(--color-primary-50);
     color: var(--color-invert);
     font-family: 'League Spartan', sans-serif;
+    position: relative;
+}
+
+body::after {
+    content:'';
+    background-image: url(/_nuxt/assets/images/silk.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    mix-blend-mode: multiply;
+    opacity: 0.4;
+    z-index: -1;
 }
 
 /* Interactief */
@@ -74,6 +90,7 @@ button {
     box-shadow: var(--shadow-default);
     color: var(--color-default);
     padding: var(--unit-micro) var(--unit-default);
+    mix-blend-mode: color-burn;
 }
 
 button figure {
@@ -134,6 +151,7 @@ h1 {
     line-height: 1.2;
     margin-bottom: var(--unit-default);
     max-width: 23rem;
+    mix-blend-mode: color-burn;
 }
 
 h3 {

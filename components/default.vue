@@ -46,7 +46,8 @@
     }
 
     header svg {
-        fill: var(--color-default);
+        fill: var(--color-secundary);
+        mix-blend-mode: color-burn;
     }
 
     header ul li {
@@ -67,10 +68,12 @@
         border-radius: var(--unit-micro);
         padding: var(--unit-micro) var(--unit-small);
         transition: var(--animation-default) ease-in-out;
+        mix-blend-mode: color-burn;
     }
 
     header ul li a:is(:hover, :focus){
-        background-color: var(--color-default);
+        background-color: var(--color-secundary);
+        color: var(--color-default)
     }
 
     @media (min-width: 40rem){
