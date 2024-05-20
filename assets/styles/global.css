@@ -50,7 +50,7 @@ body {
 
 body::after {
     content:'';
-    background-image: url(/_nuxt/assets/images/silk.jpg);
+    background-image: url(assets/images/silk.jpg);
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
