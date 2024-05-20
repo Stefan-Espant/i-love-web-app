@@ -1,63 +1,96 @@
-<script setup>
-import { ref, computed, watch } from 'vue';
-import { useFetch, useRuntimeConfig, useRoute } from '@nuxtjs/composition-api';
-import SearchBar from '~/components/SearchBar.vue';
-
-const QUERY = `
-{
-  allArticles {
-    id
-    datum
-    auteur
-    title
-    paragraaf(markdown: true)
-    _createdAt
-    _status
-  }
-}
-`;
-
-const runtimeConfig = useRuntimeConfig();
-const route = useRoute();
-const searchQuery = ref(route.query.q || '');
-
-const { data, error } = await useFetch('https://graphql.datocms.com', {
-  method: 'POST',
-  headers: {
-    Authorization: `Bearer ${runtimeConfig.public.datoCmsToken}`,
-  },
-  body: {
-    query: QUERY,
-  },
-});
-
-const filteredData = computed(() => {
-  if (searchQuery.value) {
-    return data.value.allArticles.filter(article =>
-      article.title.toLowerCase().includes(searchQuery.value.toLowerCase())
-    );
-  }
-  return data.value.allArticles;
-});
-
-watch(
-  () => route.query.q,
-  (newQuery) => {
-    searchQuery.value = newQuery || '';
-  },
-  { immediate: true }
-);
-</script>
-
 <template>
-  <div>
-    <Default />
-    <Intro />
-    <SearchBar />
-    <div v-if="error">Er is een fout opgetreden: {{ error.message }}</div>
-    <articleCard v-if="data" :articles="filteredData" />
-  </div>
+	<div>
+		<Default />
+		<section v-if="data">
+				<h1 v-if="data.article">{{ data.article.title }}</h1>
+        <div class="subinfo">
+          <h2 v-if="data.article">{{ data.article.auteur }}</h2>
+				<time>{{ data.article.datum }}</time>
+        </div>
+				<p>{{ data.article.paragraaf }}</p>
+		</section>
+		<div v-if="!data && !error">Loading...</div>
+		<div v-if="error">{{ error }}</div>
+	</div>
 </template>
 
+<script setup>
+const QUERY = `
+  query GetArticle($id: ItemId) {
+    article(filter: { id: { eq: $id } }) {
+      id
+      datum
+      auteur
+      title
+      paragraaf
+      _createdAt
+      _status
+    }
+  }
+`;
+
+const id = useRoute().params.id;
+const runtimeConfig = useRuntimeConfig();
+
+const { data, error } = await useFetch('https://graphql.datocms.com', {
+	method: 'POST',
+	headers: {
+		Authorization: `Bearer ${runtimeConfig.public.datoCmsToken}`
+	},
+	body: {
+		query: QUERY,
+		variables: {
+			id: id
+		}
+	},
+	transform: ({ data, errors }) => {
+		if (errors) {
+			console.error(errors);
+			return { error: 'An error occurred while fetching data.' };
+		}
+		return data;
+	}
+});
+
+definePageMeta({
+	layout: 'default'
+});
+
+console.log(data);
+</script>
+
 <style scoped>
+section {
+	width: fit-content;
+	background-color: var(--color-default);
+	padding: var(--unit-default);
+	border-radius: var(--unit-micro);
+	box-shadow: var(--shadow-default);
+  	margin: auto;
+	mix-blend-mode: color-burn;
+}
+
+.subinfo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-content: space-between;
+  align-items: center;
+}
+
+h1 {
+	max-width: 75%;
+	mix-blend-mode: unset;
+}
+
+time {
+  width: fit-content;
+  display: block;
+  margin: 1rem 0;
+}
+
+@media (min-width: 40rem) {
+  section {
+    width: 50%;
+  }
+}
 </style>
