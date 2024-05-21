@@ -6,6 +6,15 @@ export default defineNuxtConfig({
       datoCmsToken: process.env.datoCmsToken,
     },
   },
+  routeRules: {
+    '/**': { isr: 60 },
+    '/static': { isr: true },
+    '/prerendered': { prerender: true },
+    '/dynamic': { isr: false },
+    '/redirect': { redirect: '/static' },
+    '/headers': { headers: { 'x-magic-of': 'nuxt and vercel' } },
+    '/spa': { ssr: false },
+  },
   app: {
     head: {
       htmlAttrs: {
