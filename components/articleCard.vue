@@ -45,7 +45,6 @@ const { data, error } = await useFetch('https://graphql.datocms.com', {
 	}
 });
 
-console.log(data);
 </script>
 
 <style scoped>

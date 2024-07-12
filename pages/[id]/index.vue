@@ -55,8 +55,6 @@ const { data, error } = await useFetch('https://graphql.datocms.com', {
 definePageMeta({
 	layout: 'default'
 });
-
-console.log(data);
 </script>
 
 <style scoped>
@@ -67,6 +65,7 @@ section {
 	border-radius: var(--unit-micro);
 	box-shadow: var(--shadow-default);
   	margin: auto;
+	margin-bottom: 5rem;
 	mix-blend-mode: color-burn;
 }
 
