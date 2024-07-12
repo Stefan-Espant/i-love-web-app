@@ -1,3 +1,6 @@
+import { useFetch } from '@nuxtjs/composition-api';
+import { useRuntimeConfig } from '@nuxtjs/composition-api';
+
 export default (options) => {
   const { query, variables = {} } = options;
   const runtimeConfig = useRuntimeConfig();

@@ -32,6 +32,9 @@
             <li>
                 <a href="/over">Over dit blog</a>
             </li>
+            <li>
+                <a href="/upload">Upload</a>
+            </li>
         </ul>
     </header>
 </template>

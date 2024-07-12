@@ -1,0 +1,134 @@
+<template>
+  <Default />
+
+  <div>
+    <section>
+      <h1>Upload een post</h1>
+      <form @submit.prevent="createArticle">
+        <fieldset>
+          <legend>info post</legend>
+          <label for="title">
+            Titel:
+            <input v-model="title" type="text" id="title" name="title" required />
+          </label>
+          <label for="auteur">
+            Auteur:
+            <input v-model="auteur" type="text" id="auteur" name="auteur" required />
+          </label>
+          <label for="datum">
+            Datum:
+            <input v-model="datum" type="date" id="datum" name="datum" required />
+          </label>
+        </fieldset>
+        <fieldset>
+          <legend>content post</legend>
+          <label for="paragraaf">
+            Content:
+            <textarea v-model="paragraaf" id="paragraaf" name="paragraaf" required></textarea>
+          </label>
+        </fieldset>
+        <button type="submit">Verzenden</button>
+      </form>
+    </section>
+  </div>
+</template>
+
+<script setup>
+const runtimeConfig = useRuntimeConfig();
+
+const createArticle = async () => {
+  const MUTATION = `
+      mutation CreateArticle($title: String!, $author: String!, $date: String!, $content: String!) {
+        createArticle(data: {title: $title, author: $author, date: $date, content: $content}) {
+          id
+          title
+          author
+          date
+          content
+        }
+      }
+    `;
+
+  const variables = {
+    title: title.value,
+    author: auteur.value,
+    date: datum.value,
+    content: paragraaf.value,
+  };
+
+  try {
+    const response = await fetch("https://graphql.datocms.com/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        Authorization: `Bearer ${runtimeConfig.public.datoCmsToken}`,
+      },
+      body: JSON.stringify({
+        query: MUTATION,
+        variables: variables,
+      }),
+    });
+
+    const res = await response.json();
+    if (res.errors) {
+      console.error(res.errors);
+    } else {
+      console.log(res.data);
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+</script>
+
+<style scoped>
+form {
+  display: grid;
+  gap: 1rem;
+}
+
+input,
+textarea {
+  margin-top: 0.5rem;
+}
+
+textarea {
+  min-height: 10rem;
+}
+
+fieldset {
+  border: none;
+  display: grid;
+  grid-auto-flow: row;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+legend {
+  visibility: hidden;
+}
+
+section {
+  padding: 1rem;
+}
+
+button {
+  margin-left: auto;
+  width: fit-content;
+  padding: 0.75rem 1rem;
+}
+
+@media (min-width: 40rem) {
+  fieldset:first-of-type {
+    grid-auto-flow: column;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  fieldset:last-of-type {
+    grid-auto-flow: column;
+    grid-template-columns: 1fr;
+  }
+}
+</style>

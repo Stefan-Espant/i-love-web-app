@@ -105,7 +105,7 @@ button figure svg {
     transition: var(--animation-default);
 }
 
-input {
+input, textarea {
     background-color: var(--color-default);
     border: unset;
     border-radius: var(--unit-micro);
