@@ -4,12 +4,12 @@
   <div>
     <section>
       <h1>Upload een post</h1>
-      <form @submit.prevent="createArticle">
+      <form @submit.prevent="handleSubmit">
         <fieldset>
           <legend>info post</legend>
           <label for="title">
             Titel:
-            <input v-model="title" type="text" id="title" name="title" required />
+            <input v-model="titel" type="text" id="title" name="title" required />
           </label>
           <label for="auteur">
             Auteur:
@@ -34,52 +34,46 @@
 </template>
 
 <script setup>
-const runtimeConfig = useRuntimeConfig();
+import { ref } from 'vue';
 
-const createArticle = async () => {
-  const MUTATION = `
-      mutation CreateArticle($title: String!, $author: String!, $date: String!, $content: String!) {
-        createArticle(data: {title: $title, author: $author, date: $date, content: $content}) {
-          id
-          title
-          author
-          date
-          content
-        }
-      }
-    `;
+const titel = ref('');
+const auteur = ref('');
+const datum = ref('');
+const paragraaf = ref('');
 
-  const variables = {
-    title: title.value,
-    author: auteur.value,
-    date: datum.value,
-    content: paragraaf.value,
-  };
-
+async function handleSubmit() {
   try {
-    const response = await fetch("https://graphql.datocms.com/", {
-      method: "POST",
+    console.log("Submitting new article...");
+
+    const response = await fetch('./api/createArticle', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        Authorization: `Bearer ${runtimeConfig.public.datoCmsToken}`,
+        'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        query: MUTATION,
-        variables: variables,
+        data: {
+          article: {
+            titel: titel.value,
+            auteur: auteur.value,
+            datum: datum.value,
+            paragraaf: paragraaf.value
+          },
+        },
       }),
     });
 
-    const res = await response.json();
-    if (res.errors) {
-      console.error(res.errors);
-    } else {
-      console.log(res.data);
+    console.log(response)
+
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
     }
+
+    const newItem = await response.json();
+    console.log('Artikel aangemaakt en gepubliceerd:', newItem);
   } catch (error) {
-    console.error(error);
+    console.error('Error in handleSubmit:', error);
   }
-};
+}
 </script>
 
 <style scoped>

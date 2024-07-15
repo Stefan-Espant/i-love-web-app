@@ -16,6 +16,10 @@
     "vue-router": "^4.2.5"
   },
   "dependencies": {
-    "@datocms/cma-client-node": "^3.3.5"
+    "@datocms/cma-client": "^3.3.5",
+    "@datocms/cma-client-browser": "^3.3.5",
+    "@datocms/cma-client-node": "^3.3.5",
+    "@szmarczak/http-timer": "^5.0.1",
+    "uuid": "^10.0.0"
   }
 }
